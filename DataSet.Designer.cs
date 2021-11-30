@@ -1441,8 +1441,6 @@ namespace Courseworkd_DB {
             
             private global::System.Data.DataColumn columnPrice;
             
-            private global::System.Data.DataColumn columnDate;
-            
             private global::System.Data.DataColumn columnExp_Date;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1528,14 +1526,6 @@ namespace Courseworkd_DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn DateColumn {
-                get {
-                    return this.columnDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn Exp_DateColumn {
                 get {
                     return this.columnExp_Date;
@@ -1579,7 +1569,7 @@ namespace Courseworkd_DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ProductsRow AddProductsRow(CategoriesRow parentCategoriesRowByFK__Products__ID_cat__71D1E811, string Name, string Units, int Quantity, decimal Price, System.DateTime Date, System.DateTime Exp_Date) {
+            public ProductsRow AddProductsRow(CategoriesRow parentCategoriesRowByFK__Products__ID_cat__71D1E811, string Name, string Units, int Quantity, decimal Price, System.DateTime Exp_Date) {
                 ProductsRow rowProductsRow = ((ProductsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1588,7 +1578,6 @@ namespace Courseworkd_DB {
                         Units,
                         Quantity,
                         Price,
-                        Date,
                         Exp_Date};
                 if ((parentCategoriesRowByFK__Products__ID_cat__71D1E811 != null)) {
                     columnValuesArray[1] = parentCategoriesRowByFK__Products__ID_cat__71D1E811[0];
@@ -1628,7 +1617,6 @@ namespace Courseworkd_DB {
                 this.columnUnits = base.Columns["Units"];
                 this.columnQuantity = base.Columns["Quantity"];
                 this.columnPrice = base.Columns["Price"];
-                this.columnDate = base.Columns["Date"];
                 this.columnExp_Date = base.Columns["Exp_Date"];
             }
             
@@ -1647,8 +1635,6 @@ namespace Courseworkd_DB {
                 base.Columns.Add(this.columnQuantity);
                 this.columnPrice = new global::System.Data.DataColumn("Price", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrice);
-                this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDate);
                 this.columnExp_Date = new global::System.Data.DataColumn("Exp_Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExp_Date);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -1666,7 +1652,6 @@ namespace Courseworkd_DB {
                 this.columnUnits.MaxLength = 3;
                 this.columnQuantity.AllowDBNull = false;
                 this.columnPrice.AllowDBNull = false;
-                this.columnDate.AllowDBNull = false;
                 this.columnExp_Date.AllowDBNull = false;
             }
             
@@ -3027,17 +3012,6 @@ namespace Courseworkd_DB {
                 }
                 set {
                     this[this.tableProducts.PriceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public System.DateTime Date {
-                get {
-                    return ((global::System.DateTime)(this[this.tableProducts.DateColumn]));
-                }
-                set {
-                    this[this.tableProducts.DateColumn] = value;
                 }
             }
             
@@ -4677,12 +4651,11 @@ SELECT DeliveryID, ProductID, Quantity, Cost FROM DeliveryProduct WHERE (Deliver
             tableMapping.ColumnMappings.Add("Units", "Units");
             tableMapping.ColumnMappings.Add("Quantity", "Quantity");
             tableMapping.ColumnMappings.Add("Price", "Price");
-            tableMapping.ColumnMappings.Add("Date", "Date");
             tableMapping.ColumnMappings.Add("Exp_Date", "Exp_Date");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Products] WHERE (([ID] = @Original_ID) AND ([ID_category] = @Original_ID_category) AND ([Name] = @Original_Name) AND ([Units] = @Original_Units) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ([Date] = @Original_Date) AND ([Exp_Date] = @Original_Exp_Date))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Products] WHERE (([ID] = @Original_ID) AND ([ID_category] = @Original_ID_category) AND ([Name] = @Original_Name) AND ([Units] = @Original_Units) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ([Exp_Date] = @Original_Exp_Date))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_category", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -4690,31 +4663,28 @@ SELECT DeliveryID, ProductID, Quantity, Cost FROM DeliveryProduct WHERE (Deliver
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Units", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Units", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Quantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Exp_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Exp_Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Products] ([ID_category], [Name], [Units], [Quantity], [Price], [Date], [Exp_Date]) VALUES (@ID_category, @Name, @Units, @Quantity, @Price, @Date, @Exp_Date);
-SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Products WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Products] ([ID_category], [Name], [Units], [Quantity], [Price], [Exp_Date]) VALUES (@ID_category, @Name, @Units, @Quantity, @Price, @Exp_Date);
+SELECT ID, ID_category, Name, Units, Quantity, Price, Exp_Date FROM Products WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_category", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Units", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Units", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Quantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Exp_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Exp_Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Products] SET [ID_category] = @ID_category, [Name] = @Name, [Units] = @Units, [Quantity] = @Quantity, [Price] = @Price, [Date] = @Date, [Exp_Date] = @Exp_Date WHERE (([ID] = @Original_ID) AND ([ID_category] = @Original_ID_category) AND ([Name] = @Original_Name) AND ([Units] = @Original_Units) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ([Date] = @Original_Date) AND ([Exp_Date] = @Original_Exp_Date));
-SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Products WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Products] SET [ID_category] = @ID_category, [Name] = @Name, [Units] = @Units, [Quantity] = @Quantity, [Price] = @Price, [Exp_Date] = @Exp_Date WHERE (([ID] = @Original_ID) AND ([ID_category] = @Original_ID_category) AND ([Name] = @Original_Name) AND ([Units] = @Original_Units) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ([Exp_Date] = @Original_Exp_Date));
+SELECT ID, ID_category, Name, Units, Quantity, Price, Exp_Date FROM Products WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_category", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Units", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Units", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Quantity", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Exp_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Exp_Date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_category", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID_category", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -4722,7 +4692,6 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Units", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Units", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Quantity", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Quantity", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 6, 2, "Price", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Exp_Date", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Exp_Date", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -4740,8 +4709,7 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM dbo.Pro" +
-                "ducts";
+            this._commandCollection[0].CommandText = "SELECT ID, ID_category, Name, Units, Quantity, Price, Exp_Date FROM dbo.Products";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4802,7 +4770,7 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_ID_category, string Original_Name, string Original_Units, int Original_Quantity, decimal Original_Price, System.DateTime Original_Date, System.DateTime Original_Exp_Date) {
+        public virtual int Delete(int Original_ID, int Original_ID_category, string Original_Name, string Original_Units, int Original_Quantity, decimal Original_Price, System.DateTime Original_Exp_Date) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_ID_category));
             if ((Original_Name == null)) {
@@ -4819,8 +4787,7 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
             }
             this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Quantity));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_Price));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_Date));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_Exp_Date));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_Exp_Date));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4841,7 +4808,7 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ID_category, string Name, string Units, int Quantity, decimal Price, System.DateTime Date, System.DateTime Exp_Date) {
+        public virtual int Insert(int ID_category, string Name, string Units, int Quantity, decimal Price, System.DateTime Exp_Date) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID_category));
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
@@ -4857,8 +4824,7 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
             }
             this.Adapter.InsertCommand.Parameters[3].Value = ((int)(Quantity));
             this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(Price));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(Date));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(Exp_Date));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(Exp_Date));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4879,23 +4845,7 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int ID_category, 
-                    string Name, 
-                    string Units, 
-                    int Quantity, 
-                    decimal Price, 
-                    System.DateTime Date, 
-                    System.DateTime Exp_Date, 
-                    int Original_ID, 
-                    int Original_ID_category, 
-                    string Original_Name, 
-                    string Original_Units, 
-                    int Original_Quantity, 
-                    decimal Original_Price, 
-                    System.DateTime Original_Date, 
-                    System.DateTime Original_Exp_Date, 
-                    int ID) {
+        public virtual int Update(int ID_category, string Name, string Units, int Quantity, decimal Price, System.DateTime Exp_Date, int Original_ID, int Original_ID_category, string Original_Name, string Original_Units, int Original_Quantity, decimal Original_Price, System.DateTime Original_Exp_Date, int ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID_category));
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
@@ -4911,27 +4861,25 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Quantity));
             this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(Price));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Date));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Exp_Date));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_ID_category));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Exp_Date));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ID_category));
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Name));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Name));
             }
             if ((Original_Units == null)) {
                 throw new global::System.ArgumentNullException("Original_Units");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Units));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Units));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_Quantity));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(Original_Price));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_Date));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_Exp_Date));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_Quantity));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(Original_Price));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_Exp_Date));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4952,8 +4900,8 @@ SELECT ID, ID_category, Name, Units, Quantity, Price, Date, Exp_Date FROM Produc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int ID_category, string Name, string Units, int Quantity, decimal Price, System.DateTime Date, System.DateTime Exp_Date, int Original_ID, int Original_ID_category, string Original_Name, string Original_Units, int Original_Quantity, decimal Original_Price, System.DateTime Original_Date, System.DateTime Original_Exp_Date) {
-            return this.Update(ID_category, Name, Units, Quantity, Price, Date, Exp_Date, Original_ID, Original_ID_category, Original_Name, Original_Units, Original_Quantity, Original_Price, Original_Date, Original_Exp_Date, Original_ID);
+        public virtual int Update(int ID_category, string Name, string Units, int Quantity, decimal Price, System.DateTime Exp_Date, int Original_ID, int Original_ID_category, string Original_Name, string Original_Units, int Original_Quantity, decimal Original_Price, System.DateTime Original_Exp_Date) {
+            return this.Update(ID_category, Name, Units, Quantity, Price, Exp_Date, Original_ID, Original_ID_category, Original_Name, Original_Units, Original_Quantity, Original_Price, Original_Exp_Date, Original_ID);
         }
     }
     

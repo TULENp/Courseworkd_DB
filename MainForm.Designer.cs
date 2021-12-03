@@ -30,13 +30,16 @@ namespace Courseworkd_DB
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ProductsTab = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.CatFilterTB = new System.Windows.Forms.TextBox();
+            this.ProdFilterTB = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.ProductsTable = new System.Windows.Forms.DataGridView();
@@ -126,9 +129,9 @@ namespace Courseworkd_DB
             this.SupOkB = new System.Windows.Forms.Button();
             this.SupCancelB = new System.Windows.Forms.Button();
             this.SupCtrlP = new System.Windows.Forms.Panel();
-            this.RemSupB = new System.Windows.Forms.Button();
             this.AddSupB = new System.Windows.Forms.Button();
             this.ReportTab = new System.Windows.Forms.TabPage();
+            this.supL = new System.Windows.Forms.Label();
             this.ReportCancelB = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -142,7 +145,6 @@ namespace Courseworkd_DB
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supL = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.ProductsTab.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -205,13 +207,14 @@ namespace Courseworkd_DB
             this.ProductsTab.Controls.Add(this.tableLayoutPanel1);
             this.ProductsTab.Location = new System.Drawing.Point(4, 34);
             this.ProductsTab.Name = "ProductsTab";
-            this.ProductsTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ProductsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.ProductsTab.Size = new System.Drawing.Size(1168, 709);
             this.ProductsTab.TabIndex = 1;
             this.ProductsTab.Text = "Products";
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(34)))));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
@@ -229,6 +232,10 @@ namespace Courseworkd_DB
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(34)))));
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.CatFilterTB);
+            this.panel1.Controls.Add(this.ProdFilterTB);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.ProductsTable);
@@ -239,11 +246,38 @@ namespace Courseworkd_DB
             this.panel1.Size = new System.Drawing.Size(1156, 528);
             this.panel1.TabIndex = 0;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(392, 483);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(198, 29);
+            this.label18.TabIndex = 19;
+            this.label18.Text = "Search by name";
+            // 
+            // CatFilterTB
+            // 
+            this.CatFilterTB.Location = new System.Drawing.Point(22, 482);
+            this.CatFilterTB.Name = "CatFilterTB";
+            this.CatFilterTB.Size = new System.Drawing.Size(334, 32);
+            this.CatFilterTB.TabIndex = 18;
+            this.CatFilterTB.TextChanged += new System.EventHandler(this.CatfilterTB_TextChanged);
+            // 
+            // ProdFilterTB
+            // 
+            this.ProdFilterTB.Location = new System.Drawing.Point(661, 482);
+            this.ProdFilterTB.Name = "ProdFilterTB";
+            this.ProdFilterTB.Size = new System.Drawing.Size(474, 32);
+            this.ProdFilterTB.TabIndex = 17;
+            this.ProdFilterTB.TextChanged += new System.EventHandler(this.ProdFilterTB_TextChanged);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(702, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(122, 31);
@@ -254,7 +288,7 @@ namespace Courseworkd_DB
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Location = new System.Drawing.Point(116, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(146, 31);
@@ -269,6 +303,16 @@ namespace Courseworkd_DB
             this.ProductsTable.AutoGenerateColumns = false;
             this.ProductsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProductsTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.ProductsTable.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
+            this.ProductsTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.ProductsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn4,
@@ -286,7 +330,7 @@ namespace Courseworkd_DB
             this.ProductsTable.RowHeadersVisible = false;
             this.ProductsTable.RowHeadersWidth = 51;
             this.ProductsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProductsTable.Size = new System.Drawing.Size(747, 488);
+            this.ProductsTable.Size = new System.Drawing.Size(747, 439);
             this.ProductsTable.TabIndex = 1;
             // 
             // iDDataGridViewTextBoxColumn4
@@ -347,6 +391,7 @@ namespace Courseworkd_DB
             // 
             this.Exp_Date.DataPropertyName = "Exp_Date";
             this.Exp_Date.HeaderText = "Sell by";
+            this.Exp_Date.MinimumWidth = 6;
             this.Exp_Date.Name = "Exp_Date";
             this.Exp_Date.ReadOnly = true;
             // 
@@ -373,6 +418,16 @@ namespace Courseworkd_DB
             this.CategoriesTable.AutoGenerateColumns = false;
             this.CategoriesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.CategoriesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.CategoriesTable.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
+            this.CategoriesTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CategoriesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.CategoriesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CategoriesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn3,
@@ -385,7 +440,7 @@ namespace Courseworkd_DB
             this.CategoriesTable.RowHeadersVisible = false;
             this.CategoriesTable.RowHeadersWidth = 51;
             this.CategoriesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CategoriesTable.Size = new System.Drawing.Size(334, 491);
+            this.CategoriesTable.Size = new System.Drawing.Size(334, 442);
             this.CategoriesTable.TabIndex = 3;
             // 
             // iDDataGridViewTextBoxColumn3
@@ -429,8 +484,9 @@ namespace Courseworkd_DB
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(1016, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 29);
@@ -440,8 +496,9 @@ namespace Courseworkd_DB
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(691, 3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 29);
@@ -451,8 +508,9 @@ namespace Courseworkd_DB
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(879, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 29);
@@ -462,8 +520,9 @@ namespace Courseworkd_DB
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(801, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 29);
@@ -473,8 +532,9 @@ namespace Courseworkd_DB
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(390, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(171, 29);
@@ -484,8 +544,9 @@ namespace Courseworkd_DB
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18.25F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(96, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 29);
@@ -578,24 +639,30 @@ namespace Courseworkd_DB
             // 
             // ProdCancelB
             // 
+            this.ProdCancelB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.ProdCancelB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProdCancelB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.ProdCancelB.ForeColor = System.Drawing.Color.White;
             this.ProdCancelB.Location = new System.Drawing.Point(6, 3);
             this.ProdCancelB.Name = "ProdCancelB";
             this.ProdCancelB.Size = new System.Drawing.Size(200, 50);
             this.ProdCancelB.TabIndex = 8;
             this.ProdCancelB.Text = "Cancel";
-            this.ProdCancelB.UseVisualStyleBackColor = true;
+            this.ProdCancelB.UseVisualStyleBackColor = false;
             this.ProdCancelB.Click += new System.EventHandler(this.ControlProdCancel_Click);
             // 
             // ProdOkB
             // 
+            this.ProdOkB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.ProdOkB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProdOkB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.ProdOkB.ForeColor = System.Drawing.Color.White;
             this.ProdOkB.Location = new System.Drawing.Point(276, 3);
             this.ProdOkB.Name = "ProdOkB";
             this.ProdOkB.Size = new System.Drawing.Size(200, 50);
             this.ProdOkB.TabIndex = 9;
             this.ProdOkB.Text = "OK";
-            this.ProdOkB.UseVisualStyleBackColor = true;
+            this.ProdOkB.UseVisualStyleBackColor = false;
             this.ProdOkB.Click += new System.EventHandler(this.ControlProdOK_Click);
             // 
             // ControlP
@@ -611,35 +678,44 @@ namespace Courseworkd_DB
             // 
             // AddProdB
             // 
+            this.AddProdB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.AddProdB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddProdB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.AddProdB.ForeColor = System.Drawing.Color.White;
             this.AddProdB.Location = new System.Drawing.Point(22, 3);
             this.AddProdB.Name = "AddProdB";
             this.AddProdB.Size = new System.Drawing.Size(200, 50);
             this.AddProdB.TabIndex = 0;
             this.AddProdB.Text = "Add";
-            this.AddProdB.UseVisualStyleBackColor = true;
+            this.AddProdB.UseVisualStyleBackColor = false;
             this.AddProdB.Click += new System.EventHandler(this.AddProdB_Click);
             // 
             // RemProdB
             // 
+            this.RemProdB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.RemProdB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RemProdB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.RemProdB.ForeColor = System.Drawing.Color.White;
             this.RemProdB.Location = new System.Drawing.Point(434, 3);
             this.RemProdB.Name = "RemProdB";
             this.RemProdB.Size = new System.Drawing.Size(200, 50);
             this.RemProdB.TabIndex = 11;
             this.RemProdB.Text = "Remove";
-            this.RemProdB.UseVisualStyleBackColor = true;
+            this.RemProdB.UseVisualStyleBackColor = false;
             this.RemProdB.Click += new System.EventHandler(this.RemProdB_Click);
             // 
             // ChangeProdB
             // 
+            this.ChangeProdB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.ChangeProdB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChangeProdB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.ChangeProdB.ForeColor = System.Drawing.Color.White;
             this.ChangeProdB.Location = new System.Drawing.Point(228, 3);
             this.ChangeProdB.Name = "ChangeProdB";
             this.ChangeProdB.Size = new System.Drawing.Size(200, 50);
             this.ChangeProdB.TabIndex = 10;
-            this.ChangeProdB.Text = "Change";
-            this.ChangeProdB.UseVisualStyleBackColor = true;
+            this.ChangeProdB.Text = "Edit";
+            this.ChangeProdB.UseVisualStyleBackColor = false;
             this.ChangeProdB.Click += new System.EventHandler(this.ChangeProdB_Click);
             // 
             // SalesTab
@@ -652,7 +728,7 @@ namespace Courseworkd_DB
             this.SalesTab.Controls.Add(this.Sale_P_Table);
             this.SalesTab.Location = new System.Drawing.Point(4, 34);
             this.SalesTab.Name = "SalesTab";
-            this.SalesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SalesTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.SalesTab.Size = new System.Drawing.Size(1168, 709);
             this.SalesTab.TabIndex = 0;
             this.SalesTab.Text = "Sales";
@@ -681,13 +757,16 @@ namespace Courseworkd_DB
             // 
             // AddSaleB
             // 
+            this.AddSaleB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.AddSaleB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddSaleB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.AddSaleB.ForeColor = System.Drawing.Color.White;
             this.AddSaleB.Location = new System.Drawing.Point(28, 627);
             this.AddSaleB.Name = "AddSaleB";
-            this.AddSaleB.Size = new System.Drawing.Size(235, 55);
+            this.AddSaleB.Size = new System.Drawing.Size(300, 53);
             this.AddSaleB.TabIndex = 2;
-            this.AddSaleB.Text = "Add sale";
-            this.AddSaleB.UseVisualStyleBackColor = true;
+            this.AddSaleB.Text = "Add sale report";
+            this.AddSaleB.UseVisualStyleBackColor = false;
             this.AddSaleB.Click += new System.EventHandler(this.AddSaleB_Click);
             // 
             // SalesTable
@@ -711,7 +790,7 @@ namespace Courseworkd_DB
             this.SalesTable.RowHeadersVisible = false;
             this.SalesTable.RowHeadersWidth = 51;
             this.SalesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.SalesTable.Size = new System.Drawing.Size(451, 529);
+            this.SalesTable.Size = new System.Drawing.Size(451, 514);
             this.SalesTable.TabIndex = 1;
             // 
             // dateDataGridViewTextBoxColumn1
@@ -766,7 +845,7 @@ namespace Courseworkd_DB
             this.Sale_P_Table.RowHeadersVisible = false;
             this.Sale_P_Table.RowHeadersWidth = 51;
             this.Sale_P_Table.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Sale_P_Table.Size = new System.Drawing.Size(619, 529);
+            this.Sale_P_Table.Size = new System.Drawing.Size(619, 514);
             this.Sale_P_Table.TabIndex = 0;
             // 
             // pName
@@ -836,13 +915,16 @@ namespace Courseworkd_DB
             // 
             // AddDeliveryB
             // 
+            this.AddDeliveryB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.AddDeliveryB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddDeliveryB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.AddDeliveryB.ForeColor = System.Drawing.Color.White;
             this.AddDeliveryB.Location = new System.Drawing.Point(27, 627);
             this.AddDeliveryB.Name = "AddDeliveryB";
-            this.AddDeliveryB.Size = new System.Drawing.Size(255, 55);
+            this.AddDeliveryB.Size = new System.Drawing.Size(327, 53);
             this.AddDeliveryB.TabIndex = 12;
-            this.AddDeliveryB.Text = "Add delivery";
-            this.AddDeliveryB.UseVisualStyleBackColor = true;
+            this.AddDeliveryB.Text = "Add delivery report";
+            this.AddDeliveryB.UseVisualStyleBackColor = false;
             this.AddDeliveryB.Click += new System.EventHandler(this.AddDeliveryB_Click);
             // 
             // Del_P_Table
@@ -853,14 +935,6 @@ namespace Courseworkd_DB
             this.Del_P_Table.AutoGenerateColumns = false;
             this.Del_P_Table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Del_P_Table.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Del_P_Table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Del_P_Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Del_P_Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DelPName,
@@ -882,6 +956,7 @@ namespace Courseworkd_DB
             this.DelPName.DataPropertyName = "ProductName";
             this.DelPName.FillWeight = 250F;
             this.DelPName.HeaderText = "Product Name";
+            this.DelPName.MinimumWidth = 6;
             this.DelPName.Name = "DelPName";
             this.DelPName.ReadOnly = true;
             // 
@@ -919,14 +994,6 @@ namespace Courseworkd_DB
             this.DeliviriesTable.AutoGenerateColumns = false;
             this.DeliviriesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DeliviriesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DeliviriesTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DeliviriesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DeliviriesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sName,
@@ -1198,29 +1265,34 @@ namespace Courseworkd_DB
             // 
             // SupOkB
             // 
+            this.SupOkB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.SupOkB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SupOkB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.SupOkB.ForeColor = System.Drawing.Color.White;
             this.SupOkB.Location = new System.Drawing.Point(310, 3);
             this.SupOkB.Name = "SupOkB";
             this.SupOkB.Size = new System.Drawing.Size(200, 50);
             this.SupOkB.TabIndex = 8;
             this.SupOkB.Text = "OK";
-            this.SupOkB.UseVisualStyleBackColor = true;
+            this.SupOkB.UseVisualStyleBackColor = false;
             this.SupOkB.Click += new System.EventHandler(this.SupOkB_Click);
             // 
             // SupCancelB
             // 
+            this.SupCancelB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.SupCancelB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SupCancelB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.SupCancelB.ForeColor = System.Drawing.Color.White;
             this.SupCancelB.Location = new System.Drawing.Point(8, 3);
             this.SupCancelB.Name = "SupCancelB";
             this.SupCancelB.Size = new System.Drawing.Size(200, 50);
             this.SupCancelB.TabIndex = 7;
             this.SupCancelB.Text = "Cancel";
-            this.SupCancelB.UseVisualStyleBackColor = true;
+            this.SupCancelB.UseVisualStyleBackColor = false;
             this.SupCancelB.Click += new System.EventHandler(this.SupCancelB_Click);
             // 
             // SupCtrlP
             // 
-            this.SupCtrlP.Controls.Add(this.RemSupB);
             this.SupCtrlP.Controls.Add(this.AddSupB);
             this.SupCtrlP.Dock = System.Windows.Forms.DockStyle.Left;
             this.SupCtrlP.Location = new System.Drawing.Point(0, 0);
@@ -1228,26 +1300,18 @@ namespace Courseworkd_DB
             this.SupCtrlP.Size = new System.Drawing.Size(624, 73);
             this.SupCtrlP.TabIndex = 0;
             // 
-            // RemSupB
-            // 
-            this.RemSupB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.RemSupB.Location = new System.Drawing.Point(265, 3);
-            this.RemSupB.Name = "RemSupB";
-            this.RemSupB.Size = new System.Drawing.Size(200, 50);
-            this.RemSupB.TabIndex = 6;
-            this.RemSupB.Text = "Remove";
-            this.RemSupB.UseVisualStyleBackColor = true;
-            this.RemSupB.Click += new System.EventHandler(this.RemSupB_Click);
-            // 
             // AddSupB
             // 
+            this.AddSupB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.AddSupB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddSupB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.AddSupB.ForeColor = System.Drawing.Color.White;
             this.AddSupB.Location = new System.Drawing.Point(23, 3);
             this.AddSupB.Name = "AddSupB";
             this.AddSupB.Size = new System.Drawing.Size(200, 50);
             this.AddSupB.TabIndex = 5;
             this.AddSupB.Text = "Add";
-            this.AddSupB.UseVisualStyleBackColor = true;
+            this.AddSupB.UseVisualStyleBackColor = false;
             this.AddSupB.Click += new System.EventHandler(this.AddSupB_Click);
             // 
             // ReportTab
@@ -1265,20 +1329,35 @@ namespace Courseworkd_DB
             this.ReportTab.Controls.Add(this.ReportTable);
             this.ReportTab.Location = new System.Drawing.Point(4, 34);
             this.ReportTab.Name = "ReportTab";
-            this.ReportTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ReportTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.ReportTab.Size = new System.Drawing.Size(1168, 709);
             this.ReportTab.TabIndex = 3;
             this.ReportTab.Text = "Report";
             // 
+            // supL
+            // 
+            this.supL.AutoSize = true;
+            this.supL.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
+            this.supL.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.supL.Location = new System.Drawing.Point(492, 593);
+            this.supL.Name = "supL";
+            this.supL.Size = new System.Drawing.Size(192, 31);
+            this.supL.TabIndex = 23;
+            this.supL.Text = "Select supplier";
+            this.supL.Visible = false;
+            // 
             // ReportCancelB
             // 
+            this.ReportCancelB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.ReportCancelB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReportCancelB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.ReportCancelB.ForeColor = System.Drawing.Color.White;
             this.ReportCancelB.Location = new System.Drawing.Point(21, 609);
             this.ReportCancelB.Name = "ReportCancelB";
             this.ReportCancelB.Size = new System.Drawing.Size(240, 55);
             this.ReportCancelB.TabIndex = 22;
             this.ReportCancelB.Text = "Cancel";
-            this.ReportCancelB.UseVisualStyleBackColor = true;
+            this.ReportCancelB.UseVisualStyleBackColor = false;
             this.ReportCancelB.Click += new System.EventHandler(this.ReportCancelB_Click);
             // 
             // label17
@@ -1305,19 +1384,23 @@ namespace Courseworkd_DB
             // 
             // AddProductB
             // 
+            this.AddProductB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.AddProductB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddProductB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.AddProductB.ForeColor = System.Drawing.Color.White;
             this.AddProductB.Location = new System.Drawing.Point(910, 28);
             this.AddProductB.Name = "AddProductB";
             this.AddProductB.Size = new System.Drawing.Size(240, 50);
             this.AddProductB.TabIndex = 6;
             this.AddProductB.Text = "Add";
-            this.AddProductB.UseVisualStyleBackColor = true;
+            this.AddProductB.UseVisualStyleBackColor = false;
             this.AddProductB.Click += new System.EventHandler(this.AddProductB_Click);
             // 
             // NameCB
             // 
             this.NameCB.DataSource = this.ProductsBS;
             this.NameCB.DisplayMember = "Name";
+            this.NameCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NameCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.NameCB.FormattingEnabled = true;
             this.NameCB.Location = new System.Drawing.Point(258, 47);
@@ -1355,13 +1438,16 @@ namespace Courseworkd_DB
             // 
             // ReportOkB
             // 
+            this.ReportOkB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(132)))), ((int)(((byte)(245)))));
+            this.ReportOkB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReportOkB.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
+            this.ReportOkB.ForeColor = System.Drawing.Color.White;
             this.ReportOkB.Location = new System.Drawing.Point(910, 606);
             this.ReportOkB.Name = "ReportOkB";
             this.ReportOkB.Size = new System.Drawing.Size(240, 55);
             this.ReportOkB.TabIndex = 1;
             this.ReportOkB.Text = "OK";
-            this.ReportOkB.UseVisualStyleBackColor = true;
+            this.ReportOkB.UseVisualStyleBackColor = false;
             this.ReportOkB.Click += new System.EventHandler(this.ReportB_Click);
             // 
             // ReportTable
@@ -1388,6 +1474,7 @@ namespace Courseworkd_DB
             // 
             this.ProductID.FillWeight = 20F;
             this.ProductID.HeaderText = "ID";
+            this.ProductID.MinimumWidth = 6;
             this.ProductID.Name = "ProductID";
             this.ProductID.ReadOnly = true;
             this.ProductID.Visible = false;
@@ -1395,31 +1482,20 @@ namespace Courseworkd_DB
             // prodName
             // 
             this.prodName.HeaderText = "Product Name";
+            this.prodName.MinimumWidth = 6;
             this.prodName.Name = "prodName";
             this.prodName.ReadOnly = true;
             // 
             // Quantity
             // 
-            dataGridViewCellStyle6.Format = "N0";
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Format = "N0";
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle9;
             this.Quantity.FillWeight = 50F;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.MaxInputLength = 10;
             this.Quantity.MinimumWidth = 6;
             this.Quantity.Name = "Quantity";
             this.Quantity.ReadOnly = true;
-            // 
-            // supL
-            // 
-            this.supL.AutoSize = true;
-            this.supL.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.supL.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.supL.Location = new System.Drawing.Point(492, 593);
-            this.supL.Name = "supL";
-            this.supL.Size = new System.Drawing.Size(192, 31);
-            this.supL.TabIndex = 23;
-            this.supL.Text = "Select supplier";
-            this.supL.Visible = false;
             // 
             // MainForm
             // 
@@ -1428,8 +1504,9 @@ namespace Courseworkd_DB
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(1176, 747);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Candy shop";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.ProductsTab.ResumeLayout(false);
@@ -1539,7 +1616,6 @@ namespace Courseworkd_DB
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel Sup_OK_CancelP;
         private System.Windows.Forms.Panel SupCtrlP;
-        private System.Windows.Forms.Button RemSupB;
         private System.Windows.Forms.Button SupOkB;
         private System.Windows.Forms.Button SupCancelB;
         private System.Windows.Forms.TextBox SupNameTB;
@@ -1589,6 +1665,9 @@ namespace Courseworkd_DB
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button ReportCancelB;
         private System.Windows.Forms.Label supL;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox CatFilterTB;
+        private System.Windows.Forms.TextBox ProdFilterTB;
     }
 }
 

@@ -66,7 +66,7 @@ namespace Courseworkd_DB
 
         private void ReportB_Click(object sender, EventArgs e) //add report
         {
-            if (ReportTable.Rows.Count > 1)
+            if (ReportTable.Rows.Count > 0)
             {
                 string query = "";
 
@@ -75,7 +75,7 @@ namespace Courseworkd_DB
                     DB.Query("INSERT INTO Sales(Date) VALUES(GETDATE())"); // adding sale
                     UpdateTables();
 
-                    for (int i = 0; i < ReportTable.Rows.Count - 1; i++)
+                    for (int i = 0; i < ReportTable.Rows.Count; i++)
                     {
                         query += $"UPDATE Products SET Quantity = Quantity-{ReportTable[2, i].Value} " + // changing quantity of products 
                             $"WHERE ID={ReportTable[0, i].Value}; " +
@@ -88,7 +88,7 @@ namespace Courseworkd_DB
                 {
                     DB.Query($"INSERT INTO Deliveries (ID_supplier, Date) VALUES({SupID_CB.SelectedValue},GETDATE());"); // adding delivery 
                     UpdateTables();
-                    for (int i = 0; i < ReportTable.Rows.Count - 1; i++)
+                    for (int i = 0; i < ReportTable.Rows.Count; i++)
                     {
                         query += $"UPDATE Products SET Quantity = Quantity+{ReportTable[2, i].Value} " + // changing quantity of products 
                              $"WHERE ID={ReportTable[0, i].Value}; " +
@@ -116,9 +116,6 @@ namespace Courseworkd_DB
             }
         }
 
-        //todo prohibit adding identical products 
-        //todo prohibit writing in combobox 
-        //todo delete afterspaces (find sql function like Trim)
         private void AddProductB_Click(object sender, EventArgs e) // add row into Report table
         {
             if (NameCB.Text != "" && QuantityTB.Text != "")
@@ -299,5 +296,9 @@ namespace Courseworkd_DB
                 e.Handled = true;
             }
         }
+
+        private void CatfilterTB_TextChanged(object sender, EventArgs e) => СategoriesBS.Filter = $"Name LIKE '%{CatFilterTB.Text}%'";
+
+        private void ProdFilterTB_TextChanged(object sender, EventArgs e) => FK_Cat_P.Filter = $"Name LIKE '%{ProdFilterTB.Text}%'";
     }
 }
